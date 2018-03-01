@@ -1,0 +1,16 @@
+Req : 
+Python 2.7
+Pip
+
+Library :
+opencv
+numpy
+flask
+MySQLdb
+time
+
+Library web : 
+Jquery
+Bootsrap
+Hightcart
+Datepicker
