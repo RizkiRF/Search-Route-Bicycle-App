@@ -33,7 +33,7 @@ def calc():
 
 @app.route('/laporan', methods = ['GET','POST'])
 def lapor():
-    totalKendaraan = [1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13]
+    totalKendaraan = [1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13,14]
     # Result
     if request.method == "POST" :
         j=0
