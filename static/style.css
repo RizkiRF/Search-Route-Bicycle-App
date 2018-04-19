@@ -1,0 +1,36 @@
+.edge{
+    stroke: #59a58c;
+    transition: .2s;
+}
+
+
+.node{
+    fill: hsl(230, 50%, 60%);
+    stroke: hsl(230, 30%, 50%);
+}
+
+
+.nama_node{
+    fill: hsl(0, 0%, 100%);
+}
+
+.hightlight{
+    stroke: hsl(0, 60%, 60%);
+}
+
+.hightlight_node{
+    stroke: hsl(0, 60%, 60%);
+    fill: hsl(0, 60%, 60%);
+    transition: .2s;
+}
+
+
+#graph{
+    width: 70%;
+}
+
+svg{
+    background: #fff;
+    border: 5px dashed hsl(230, 30%, 50%);
+}
+

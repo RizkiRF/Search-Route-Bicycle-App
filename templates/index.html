@@ -1,12 +1,85 @@
+{% extends 'header.html' %} {% block body %}
 
-{% extends 'layout.html' %} {% block body %}
-<div class="jumbotron">
-    <div class="center-block">
-        <h2 style="text-align:center;margin-bottom : 20px;">CCTV DI TUGU MUDA</h2>
-            <img class="img-responsive center-block" alt="Camera CCTV" src="{{ url_for('calc') }}">
-    </div>
+<div id="graph">
+    <svg width="920" height="600">
+        <g transform="scale(100, 100) translate(0.5, 0.5)">
+
+            <line class="edge M T" stroke-width="0.1" x1="2.5" y1="2.5" x2="6" y2="2.3"></line>
+            <line class="edge N M" stroke-width="0.1" x1=".5" y1="1.9" x2="2.8" y2="2.5"></line>
+            <line class="edge K M" stroke-width="0.1" x1="1.4" y1="5" x2="2.5" y2="2.5"></line>
+            <line class="edge M S" stroke-width="0.1" x1="2.5" y1="2.5" x2="5" y2="4.05"></line>
+            <line class="edge S T" stroke-width="0.1" x1="5" y1="4.05" x2="6" y2="2.3"></line>
+            <line class="edge S R" stroke-width="0.1" x1="5" y1="4.05" x2="8" y2="3.5"></line>
+            <line class="edge T U" stroke-width="0.1" x1="6" y1="2.3" x2="7.5" y2=".8"></line>
+            <line class="edge R U" stroke-width="0.1" x1="8" y1="3.5" x2="7.5" y2=".8"></line>
+
+            <circle class="node K" r=".4" stroke-width="0.02" cx="1.4" cy="5" ></circle>
+            <text class="nama_node" text-anchor="middle" font-size="0.2" x="1.4" y="5.06">Kos</text>
+
+            <circle class="node G" r="0.4" stroke-width="0.02" cx="2.5" cy="2.5"></circle>
+            <text class="nama_node" text-anchor="middle" font-size="0.2" x="2.5" y="2.55">Musium</text>
+            
+            <circle class="node B" r="0.4" stroke-width="0.02" cx=".3" cy="1.9" ></circle>
+            <text class="nama_node" text-anchor="middle" font-size="0.15" x=".3" y="1.95">Mangkang</text>
+
+            <circle class="node C" r="0.4" stroke-width="0.02" cx="6" cy="2.3" ></circle>
+            <text class="nama_node" text-anchor="middle" font-size="0.12" x="6" y="2.35">Tugu Adipura</text>
+
+            <circle class="node D" r="0.4" stroke-width="0.02" cx="5" cy="4.05" ></circle>
+            <text class="nama_node" text-anchor="middle" font-size="0.15" x="5" y="4.08">Sampokong</text>
+            
+            <circle class="node E" r="0.4" stroke-width="0.02" cx="8" cy="3.5" ></circle>
+            <text class="nama_node" text-anchor="middle" font-size="0.15" x="8" y="3.55">Kariadi</text>
+            
+            <circle class="node F" r="0.4" stroke-width="0.02" cx="7.5" cy=".8" ></circle>
+            <text class="nama_node" text-anchor="middle" font-size="0.15" x="7.5" y=".85">Udinus</text>
+            
+            <text class="judul" text-anchor="middle" font-size="0.15" x="2" y="0" >Pencarian Jarak Terdekat dari Kos ke Kampus Udinus</text>
+
+        </g>
+    </svg>
 </div>
 
-</div>
+<script>
+    
+    var lines = document.querySelectorAll('#graph .edge');
+    var str = '{{ Hasil }}';
+    console.log(str);
+    Array.from(lines).forEach(function(line){
+        line.addEventListener('mouseenter', function(a){
+            a.target.classList.add("hightlight");
+        });
+
+        line.addEventListener('mouseleave', function (a) {
+            a.target.classList.remove("hightlight");
+        });
+    });
+
+    var nodes = document.querySelectorAll('#graph .node');
+
+    Array.from(nodes).forEach(function (node) {
+        node.addEventListener('mouseover', function (a) {
+            a.target.classList.add("hightlight_node");
+            
+            console.log(a.target.setAttribute('fill','red'));
+        });
+        node.addEventListener('mouseleave', function (a) {
+            a.target.classList.remove("hightlight_node");
+        });
+        
+    }); 
+
+    // Membuat Rute berwarna
+    for (i = 0; i < str.length - 1; i++) {
+        Array.from(lines).forEach(function (line) {
+            if ((str[i] == line.classList.item(1) && str[i + 1] == line.classList.item(2)) || (str[i] == line.classList.item(2) && str[i + 1] == line.classList.item(1))) {
+                line.classList.add("hightlight");
+            }
+        });
+    }
+    
+
+    
+</script>
 
 {% endblock %}
